@@ -1,0 +1,9 @@
+export const CREATE_POKEMON = "CREATE_POKEMON";
+export const GET_POKEMON = "GET_POKEMON";
+export const GET_NAME = "GET_NAME";
+export const GET_ID = "GET_ID";
+export const GET_TYPES = "GET_TYPES";
+export const ORDER_A_Z = "ORDER_A_Z";
+export const ORDER_ATAQUE ="ORDER_ATAQUE";
+export const FILTERTYPES = "FILTERTYPES";
+export const FILTERAPIDB = "FILTERAPIDB";

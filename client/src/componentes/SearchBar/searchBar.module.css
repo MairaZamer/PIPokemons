@@ -1,0 +1,24 @@
+.searchbar {
+    background-color: black; /* Fondo negro */
+    padding: 10px;
+    display: flex; /* Utilizamos flexbox para centrar los elementos */
+    justify-content: center; /* Centramos horizontalmente */
+    align-items: center; /* Centramos verticalmente */
+}
+
+.input {
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo blanco semitransparente */
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    width: 200px; /* Ancho del input ajustable según sea necesario */
+}
+
+.button {
+    background-color: white; /* Botones blancos */
+    color: black; /* Texto negro */
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin-left: 10px; /* Espacio entre el input y el botón */
+}
