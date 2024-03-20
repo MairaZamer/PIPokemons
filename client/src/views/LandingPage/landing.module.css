@@ -26,13 +26,13 @@
     padding: 10px 20px;
     font-size: 16px;
     text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
+    color: #000000;
+    background-color: #ffffff;
+    border-color: #000000;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: #fcff3c;
 }

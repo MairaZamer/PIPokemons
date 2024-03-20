@@ -11,42 +11,37 @@ import {
 } from "./actions.types";
 
 let initialState = {
-  newPokemons: [],
   pokemones: [],
+  newPokemons: [],
   detailsPoke: [],
   newTypes: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_POKEMON:
-      return {
-        ...state,
-        newPokemons: action.payload,
-        pokemones: action.payload,
-      };
-
-    case GET_NAME:
-      if (action.payload.hasOwnProperty("name")) {
-        return {
-          ...state,
-          newPokemons: [...action.payload],
-          pokemones: [...action.payload],
-        };
-      } else {
-        return {
-          ...state,
-          newPokemons: [...action.payload],
-          pokemones: [...action.payload],
-        };
-      }
 
     case CREATE_POKEMON:
       return {
         ...state,
-        newPokemons: [...state.newPokemons, action.payload],
         pokemones: [...state.pokemones, action.payload],
+        newPokemons: [...state.newPokemons, action.payload],
       };
+
+    case GET_POKEMON:
+      return {
+        ...state,
+        pokemones: action.payload,
+        newPokemons: action.payload,
+      };
+
+    case GET_NAME:
+      return{
+        ...state,
+        pokemones: action.payload,
+        newPokemons: action.payload
+      }
+      
+
 
     case GET_ID:
       return {
@@ -119,13 +114,13 @@ const reducer = (state = initialState, action) => {
                     pokemon.types
                     .split(", ")
                     .map((element) => element.trim())
-                    .includes(action.payload)
+                    .includes(action.payload.trim())
                 );
             }),
         ];
         return{
             ...state,
-            pokemons: response,
+            pokemones: response,
         };
     
     case FILTERAPIDB:

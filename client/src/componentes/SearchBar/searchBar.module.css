@@ -1,5 +1,7 @@
 .searchbar {
-    background-color: black; /* Fondo negro */
+    border-radius: 5px;
+    background-color: rgba(99, 242, 252, 0.7);
+    box-shadow: 0 4px 8px rgba(253, 253, 253, 0.1);
     padding: 10px;
     display: flex; /* Utilizamos flexbox para centrar los elementos */
     justify-content: center; /* Centramos horizontalmente */
@@ -21,4 +23,9 @@
     border-radius: 5px;
     padding: 8px 16px;
     margin-left: 10px; /* Espacio entre el input y el botón */
+    cursor: pointer;
+
+}
+.button:hover {
+    background-color: #eff15a;
 }

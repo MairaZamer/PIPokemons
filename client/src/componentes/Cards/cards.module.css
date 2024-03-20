@@ -1,7 +1,7 @@
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px; /* Espacio entre las columnas y filas */
-    padding: 1%;
-    
+    grid-template-columns: repeat(4, 1fr); /* 3 columnas */
+    grid-template-rows: repeat(4, auto); /* 4 filas */
+    gap: 20px; /* Espacio entre las cartas */
+    justify-content: center; /* Centra las cartas horizontalmente */
 }

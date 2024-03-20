@@ -14,8 +14,6 @@ const createPokemon = async (name, image, life, attaque, defense, speed, height,
         }
 
         const response = {
-            status: 200,
-            message: "Creado correctamente",
             pokemon: {
                 id: createdPoke.id,
                 name: createdPoke.name,

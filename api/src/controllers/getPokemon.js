@@ -23,7 +23,7 @@ const getPokemon = async () => {
   });
 
   const response = await axios.get(
-    "https://pokeapi.co/api/v2/pokemon/?limit=120"
+    "https://pokeapi.co/api/v2/pokemon/?limit=300"
   );
   const result = response.data.results;
 

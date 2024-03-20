@@ -1,0 +1,47 @@
+body {
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://www.legpuzzels.nl/wp-content/uploads/Poke%CC%81mon-ravensburger100354_01-kinderpuzzels.nl_-800x588.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; 
+    min-width: 100vw;
+    min-height: 100vh;
+
+}
+
+.formulario {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.formulario input[type="text"],
+.formulario input[type="email"],
+.formulario input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    
+}
+
+.formulario input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    
+}

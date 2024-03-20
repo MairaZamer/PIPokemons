@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(99, 242, 252, 0.5); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 20px;
+    border-radius: 10px; 
+    width: 80%; 
+    margin: auto; 
+  }
+  
+  .card {
+    display: flex;
+  }
+  
+  .card img {
+    width: 200px;
+    height: 200px;
+    margin-right: 20px; /* Espaciado entre la imagen y los datos */
+    border-radius: 5px; /* Bordes redondeados para la imagen */
+  }
+  
+  .card-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .button {
+    background-color: rgb(255, 255, 255); 
+    color: black; 
+    border-color: black;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin-left: 10px; 
+  }
+  

@@ -2,52 +2,38 @@ const axios = require("axios");
 const { Op } = require("sequelize");
 const { Pokemon, Type } = require("../db");
 
-const getPokemonByName = async (name) => {
-  const pokemonDB = await Pokemon.findAll({
-    where: { name: { [Op.iLike]: `%${name}%` } },
-    include: [Type],
-  });
-  const newPokemon = pokemonDB.map((pokemon) => {
-    return {
-      id: pokemon.id,
-      name: pokemon.name,
-      image: pokemon.image,
-      life: pokemon.life,
-      attaque: pokemon.attaque,
-      defense: pokemon.defense,
-      speed: pokemon.speed,
-      height: pokemon.height,
-      weight: pokemon.weight,
-      types: pokemon.types.map((type) => type.name),
-    };
-  });
-  if (newPokemon.length > 0) {
-    return newPokemon[0];
-  }
-
+const getPokemonsByName = async (name) => {
   try {
-    const getInfo = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon/${name}`
-    );
-    const apiInfo = getInfo.data;
-    const poke = {
-      id: apiInfo.id,
-      name: apiInfo.name,
-      image: apiInfo.sprites.front_default,
-      life: apiInfo.stats[0].base_stat,
-      attaque: apiInfo.stats[1].base_stat,
-      defense: apiInfo.stats[2].base_stat,
-      speed: apiInfo.stats[5].base_stat,
-      height: apiInfo.height,
-      weight: apiInfo.weight,
-      types: apiInfo.types.map((type) => type.type.name),
-    };
+      const pokemonsFromDB = await Pokemon.findAll({
+          where: { name: { [Op.iLike]: `%${name}%` } },
+          include: Type
+      });
 
-    return poke;
+      const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+      const pokemonFromAPI = response.data;
+
+      // Procesa y formatea los datos de la API según sea necesario
+      const pokemon = {
+          id: pokemonFromAPI.id,
+          name: pokemonFromAPI.name,
+          image: pokemonFromAPI.sprites.front_default,
+          life: pokemonFromAPI.stats[0].base_stat,
+          attaque: pokemonFromAPI.stats[1].base_stat,
+          defense: pokemonFromAPI.stats[2].base_stat,
+          speed: pokemonFromAPI.stats[5].base_stat,
+          height: pokemonFromAPI.height,
+          weight: pokemonFromAPI.weight,
+          types: pokemonFromAPI.types.map(type => type.type.name)
+      };
+
+      // Combina los datos de la base de datos y la API
+      const combinedData = pokemonsFromDB.concat(pokemon);
+
+      return combinedData;
   } catch (error) {
-    console.error("Error en la solicitud a la API de PokeAPI:", error);
-    return null;
+      console.error("Error en la solicitud a la API de Pokémon:", error);
+      throw error;
   }
 };
 
-module.exports = getPokemonByName;
+module.exports = getPokemonsByName;

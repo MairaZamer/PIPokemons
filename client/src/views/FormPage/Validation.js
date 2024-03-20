@@ -1,7 +1,7 @@
-const Validation = (data) => {
+const validation = (data) => {
     const errors = {};
 
-    if(data.name.length >= 3){
+    if(data.name.length <= 3){
         errors.name = "El nombre tiene que ser mayor o igual a 3 dijitos"
     }
     if(!/^[A-Za-z]{1,25}$/i.test(data.name)){
@@ -44,13 +44,14 @@ const Validation = (data) => {
         errors.weight = 'El peso debe ser un número de hasta 4 dígitos';
     }
 
-    if(!data.image){
-        errors.image = "Debes seleccionar una imagen"
-    }
+    // if(!/^(ftp|http|https):\/\/[^ "]+$/.test(data.image.url)){
+    //     errors.image = "Tiene que ser una URL"
+    // }
 
     if(data.types.length > 0){
         errors.types = "Debes seleccionar al menos un tipo"
     }
+    return errors;
 }
 
-export default Validation;
+export default validation;

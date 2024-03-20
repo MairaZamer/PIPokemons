@@ -1,5 +1,5 @@
 .container {
-    background-color: black; /* Fondo negro */
+    background-color: rgba(0, 0, 0, 0.7);
     height: 100vh; /* Ajustar el tamaño según sea necesario */
     display: flex;
     flex-direction: column;
@@ -8,22 +8,28 @@
 }
 
 .button {
-    background-color: white; /* Botones blancos */
+    background-color: rgba(255, 255, 255, 0.7);
     color: black; /* Texto negro */
     border-color: black;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 8px 16px;
     margin-bottom: 20px; /* Espacio entre los elementos */
+    margin-left: 10px;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #eff15a;
 }
 .selectContainer {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
-    background-color: white; /* Fondo blanco para el select */
+    background-color: rgba(253, 253, 253, 0.7);
     border: none;
     border-radius: 5px;
     padding: 8px;
     margin-bottom: 20px; /* Espacio entre los elementos */
+
 }
 
 

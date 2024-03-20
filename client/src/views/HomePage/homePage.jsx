@@ -26,7 +26,8 @@ const HomePage = () => {
 
     const startIndex = currentPage * POKE_POR_PAG;
     const endIndex = startIndex + POKE_POR_PAG;
-    const pokeToDisplay = allPoke?.slice(startIndex, endIndex);
+    const pokeToDisplay = Array.isArray(allPoke) ? allPoke.slice(startIndex, endIndex) : [];
+
 
     const nextHandler = () => {
         if (currentPage < totalPage - 1) {
@@ -38,6 +39,10 @@ const HomePage = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1)
         }
+    }
+
+    const resetHandler = () => {
+        setCurrentPage(0);
     }
 
     // //ORDER
@@ -59,11 +64,11 @@ const HomePage = () => {
         setCurrentPage(0)
     };
 
-    const handlerFilterTypes = (event) => {
-        const seleccion = event.target.value;
-        setTypes(seleccion);
+    const handlerFilter = (event) => {
+        const select = event.target.value;
+        setTypes(select);
+        dispatch(filterType(select))
         setCurrentPage(0);
-        dispatch(filterType(seleccion))
     };
 
     useEffect(() => {
@@ -92,7 +97,7 @@ const HomePage = () => {
             </select>
 
             <select 
-                onChange={handlerFilterTypes}>
+                onChange={handlerFilter}>
                 {allTYPE && Array.isArray(allTYPE) && allTYPE.map(types => <option name={types.name} key={types.key} value={types.name}>{types.name}</option>)}
             </select>
             </div>
@@ -104,6 +109,8 @@ const HomePage = () => {
             <button className={style.button} onClick={prevHandler} disabled={currentPage === 0} >Prev</button>
             <span>Pagina: {currentPage + 1} de {totalPage}</span>
             <button className={style.button} onClick={nextHandler} disabled={currentPage === totalPage - 1}>Next</button>
+        
+            <button className={style.button} onClick={resetHandler}>Reset</button>
             </div>
         </div>
     );
