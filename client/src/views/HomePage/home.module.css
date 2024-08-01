@@ -1,36 +1,43 @@
-.container {
-    background-color: rgba(0, 0, 0, 0.7);
-    height: 100vh; /* Ajustar el tamaño según sea necesario */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centrar verticalmente */
-    align-items: center; /* Centrar horizontalmente */
-}
-
-.button {
-    background-color: rgba(255, 255, 255, 0.7);
-    color: black; /* Texto negro */
-    border-color: black;
-    border-radius: 5px;
-    padding: 8px 16px;
-    margin-bottom: 20px; /* Espacio entre los elementos */
-    margin-left: 10px;
-    cursor: pointer;
-}
-.button:hover {
-    background-color: #eff15a;
-}
 .selectContainer {
     display: flex;
     justify-content: center;
+    align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
     margin-bottom: 20px;
     background-color: rgba(253, 253, 253, 0.7);
     border: none;
     border-radius: 5px;
     padding: 8px;
-    margin-bottom: 20px; /* Espacio entre los elementos */
-
 }
 
+.selectContainer select,
+.selectContainer button {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: black; /* Texto negro */
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin: 0 10px; /* Espacio entre los selects y los botones */
+    cursor: pointer;
+    font-size: 16px;
+    outline: none; /* Elimina el borde de enfoque predeterminado */
+    text-align: center; /* Centra el texto dentro de los selects y los botones */
+}
 
+.selectContainer select:hover,
+.selectContainer button:hover {
+    background-color: #eff15a;
+}
+
+.paginado {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra verticalmente el contenido */
+    margin-top: 20px;
+}
+
+.paginado span {
+    margin: 0 20px; /* Espacio entre los botones de paginación */
+    font-size: 16px; /* Ajusta el tamaño de fuente si es necesario */
+    color: black; /* Asegura que el texto tenga el color negro */
+}
 

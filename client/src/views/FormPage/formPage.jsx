@@ -2,13 +2,14 @@ import './styles.css';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createPokemon } from "../../Redux/actions";
-import validation from "./validation";
-import { Link } from "react-router-dom";
-import style from "./form.module.css"
+import validation from "./Validation";
+import { Link, useNavigate } from "react-router-dom";
+import style from "./form.module.css";
 
 const FormPage = () => {
     const allTypes = useSelector((state) => state?.newTypes);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [errors, setErrors] = useState({});
     const [dataIsValid, setDataIsValid] = useState(false);
     const [data, setData] = useState({
@@ -20,38 +21,31 @@ const FormPage = () => {
         height: '',
         weight: '',
         types: [],
-    })
+    });
 
     const handleChange = (event) => {
-        if (event.target.name === "types") {
-            setData({
-                ...data,
-                types: [...data.types, event.target.value]
-            });
+        const { name, value } = event.target;
+        if (name === "types") {
+            setData(prevData => ({
+                ...prevData,
+                types: [...prevData.types, value]
+            }));
         } else {
-            setData({
-                ...data,
-                [event.target.name]: event.target.value,
-            });
+            setData(prevData => ({
+                ...prevData,
+                [name]: value,
+            }));
             setErrors(validation({
                 ...data,
-                [event.target.name]: event.target.value,
+                [name]: value,
             }));
         }
-    }
+    };
     
     const validateData = () => {
-        return (
-            !errors.name &&
-            !errors.life &&
-            !errors.attaque &&
-            !errors.defense &&
-            !errors.speed &&
-            !errors.height &&
-            !errors.weight &&
-            !errors.types
-        );
-    }
+        return !Object.values(errors).some(error => error);
+    };
+
     useEffect(() => {
         setDataIsValid(validateData());
     }, [errors]);
@@ -69,71 +63,126 @@ const FormPage = () => {
                 height: data.height,
                 weight: data.weight,
                 types: data.types
-    
-            }
-            dispatch(createPokemon(poke))
+            };
+            dispatch(createPokemon(poke));
         } else {
             alert('Por favor, complete todos los campos correctamente');
         }
-    }
+    };
 
     return (
         <div className={style.main}>
-            <h1 className={style.mainTitle}>Crea a tu pokemon♥</h1>
+            <h1 className={style.mainTitle}>Crea a tu Pokémon ♥</h1>
             <form className={style.container} onSubmit={handleSubmit}>
-            <div className={style.formGroup}>
-                <label className={style.title}>Name: </label>
-                <br />
-                <input type='text' name='name' value={data.name} onChange={handleChange} />
-                {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
-                <br />
-                
-                <label className={style.title}>Life: </label>
-                <br />
-                <input type='text' name='life' value={data.life} onChange={handleChange} />
-                {errors.life && <p style={{ color: 'red' }}>{errors.life}</p>}
-                <br />
-                <label className={style.title}>Attack: </label>
-                <br />
-                <input type='text' name='attaque' value={data.attaque} onChange={handleChange} />
-                {errors.attaque && <p style={{ color: 'red' }}>{errors.attaque}</p>}
-                <br />
-                <label className={style.title}>Defense: </label>
-                <br />
-                <input type='text' name='defense' value={data.defense} onChange={handleChange} />
-                {errors.defense && <p style={{ color: 'red' }}>{errors.defense}</p>}
-                <br />
-                <label className={style.title}>Speed: </label>
-                <br />
-                <input type='text' name='speed' value={data.speed} onChange={handleChange} />
-                {errors.speed && <p style={{ color: 'red' }}>{errors.speed}</p>}
-                <br />
-                <label className={style.title}>Height: </label>
-                <br />
-                <input type='text' name='height' value={data.height} onChange={handleChange} />
-                {errors.height && <p style={{ color: 'red' }}>{errors.height}</p>}
-                <br />
-                <label className={style.title}>Weight: </label>
-                <br />
-                <input type='text' name='weight' value={data.weight} onChange={handleChange} />
-                {errors.weight && <p style={{ color: 'red' }}>{errors.weight}</p>}
-                <br />
-                <label className={style.title}>Types: </label>
-                <br />
-                <select className={style.selectContainer} name='types' onChange={handleChange}>
-                    {allTypes && Array.isArray(allTypes) && allTypes.map((types) =>
-                        <option key={types.name} value={types.name}>
-                            {types.name}
-                        </option>
-                    )}
-                </select>
-                {data.types.length > 0 && <p>{data.types.join(',')}</p>}
+                <div className={style.formGroup}>
+                    <label className={style.label}>Nombre:</label>
+                    <input
+                        type='text'
+                        name='name'
+                        value={data.name}
+                        onChange={handleChange}
+                        placeholder='Nombre del pokemon'
+                        className={style.input}
+                    />
+                    {errors.name && <p className={style.error}>{errors.name}</p>}
                 </div>
-                <br />
-                <button className={style.button} disabled={!dataIsValid}>Create</button>
-                <button className={style.button}>
-                    <Link to={'/home'} > Home </Link>
-                </button>    
+                
+                <div className={style.formGroup}>
+                    <label className={style.label}>Vida:</label>
+                    <input
+                        type='text'
+                        name='life'
+                        value={data.life}
+                        onChange={handleChange}
+                        placeholder='Vida del pokemon'
+                        className={style.input}
+                    />
+                    {errors.life && <p className={style.error}>{errors.life}</p>}
+                </div>
+
+                <div className={style.formGroup}>
+                    <label className={style.label}>Ataque:</label>
+                    <input
+                        type='text'
+                        name='attaque'
+                        value={data.attaque}
+                        onChange={handleChange}
+                        placeholder='Ataque del pokemon'
+                        className={style.input}
+                    />
+                    {errors.attaque && <p className={style.error}>{errors.attaque}</p>}
+                </div>
+
+                <div className={style.formGroup}>
+                    <label className={style.label}>Defenza:</label>
+                    <input
+                        type='text'
+                        name='defense'
+                        value={data.defense}
+                        onChange={handleChange}
+                        placeholder='Defenza del pokemon'
+                        className={style.input}
+                    />
+                    {errors.defense && <p className={style.error}>{errors.defense}</p>}
+                </div>
+
+                <div className={style.formGroup}>
+                    <label className={style.label}>Velocidad:</label>
+                    <input
+                        type='text'
+                        name='speed'
+                        value={data.speed}
+                        onChange={handleChange}
+                        placeholder='Velocidad del pokemon'
+                        className={style.input}
+                    />
+                    {errors.speed && <p className={style.error}>{errors.speed}</p>}
+                </div>
+
+                <div className={style.formGroup}>
+                    <label className={style.label}>Altura:</label>
+                    <input
+                        type='text'
+                        name='height'
+                        value={data.height}
+                        onChange={handleChange}
+                        placeholder='Altura del pokemon'
+                        className={style.input}
+                    />
+                    {errors.height && <p className={style.error}>{errors.height}</p>}
+                </div>
+
+                <div className={style.formGroup}>
+                    <label className={style.label}>Peso:</label>
+                    <input
+                        type='text'
+                        name='weight'
+                        value={data.weight}
+                        onChange={handleChange}
+                        placeholder='Peso del pokemon'
+                        className={style.input}
+                    />
+                    {errors.weight && <p className={style.error}>{errors.weight}</p>}
+                </div>
+
+                <div className={style.formGroup}>
+                    <label className={style.label}>Tipos:</label>
+                    <select
+                        className={style.select}
+                        name='types'
+                        onChange={handleChange}
+                    >
+                        {allTypes && Array.isArray(allTypes) && allTypes.map((type) => (
+                            <option key={type.name} value={type.name}>{type.name}</option>
+                        ))}
+                    </select>
+                    {data.types.length > 0 && <p className={style.selectedTypes}>{data.types.join(', ')}</p>}
+                </div>
+
+                <div className={style.buttonGroup}>
+                    <button type='submit' className={style.button} disabled={!dataIsValid}>Create</button>
+                    <button type='button' className={style.button} onClick={() => navigate('/home')}>Home</button>
+                </div>
             </form>
         </div>
     );

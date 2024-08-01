@@ -24,11 +24,11 @@ const SearchBar = ( { setCurrentPage } ) =>{
     return(
         <div className={style.searchbar}>
             <input className={style.input} type="text" onChange={handleName} value={name}/>
-            <button className={style.button} onClick={handleOnClick}>Search</button>
-            <button className={style.button} onClick={reset}>Reset</button>
+            <button className={style.button} onClick={handleOnClick}>Buscar</button>
+            <button className={style.button} onClick={reset}>Resetear</button>
 
             <Link to="/form">
-            <button className={style.button}>Form</button>
+            <button className={style.button}>Crear</button>
             </Link>
         </div>
     );

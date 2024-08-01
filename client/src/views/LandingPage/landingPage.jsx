@@ -18,7 +18,7 @@ const LandingPage = () =>{
             </div>
             <div>
                 <Link to='/home'>
-                    <button className={styles.button} onClick={navigateHandler}>Home</button>
+                    <button className={styles.button} onClick={navigateHandler}>Inicio</button>
                 </Link>
             </div>
         </div>

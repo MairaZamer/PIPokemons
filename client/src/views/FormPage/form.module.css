@@ -1,84 +1,96 @@
 .main {
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    min-width: 100vw;
-    min-height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .mainTitle {
-    margin: 4%;
-    color: #000000;
-    font-family: 'ClassicCustom', Arial, sans-serif;
-  }
-  
-  .container {
-    width: 520px;
-    background-color: rgba(99, 242, 252, 0.3);
-   
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(3px);
-    box-shadow: 0 0 10px rgba (0, 0, 0, .2);
-    color: #000000;
-    border-radius: 10px;
-    padding: 30px 40px;
-  }
-  
-  .wrapperLogin h1 {
-    font-size: 35px;
-    text-align: center;
-  }
-  
-  .wrapperLogin .formGroup {
-    position: relative;
-    width: 100%;
-    /* height: 50px; */
-    margin: 30px 0;
-  }
-  
-  .formGroup input {
-    width: 100%;
-    height: 50%;
-    background: transparent;
-    border: none;
-    outline: none;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    font-size: 16px;
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    padding: 15px 10px 10px 10px;
-  }
-
-  .button {
-    background-color: rgba(255, 255, 255, 0.7);
-    color: black; /* Texto negro */
-    border-color: black;
-    border-radius: 5px;
-    padding: 8px 16px;
-    margin-bottom: 20px; /* Espacio entre los elementos */
-    margin-left: 10px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  background-size: cover;
+  background-position: center;
 }
+
+.mainTitle {
+  margin: 4%;
+  color: #000000;
+  font-family: 'ClassicCustom', Arial, sans-serif;
+}
+
+.container {
+  width: 520px;
+  background-color: rgba(99, 242, 252, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: #000000;
+  border-radius: 10px;
+  padding: 30px 40px;
+  margin: 20px;
+}
+
+.formGroup {
+  margin: 20px 0;
+}
+
+.formGroup label {
+  display: block;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.formGroup input {
+  width: 100%;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.formGroup input:focus {
+  border-color: #eff15a;
+}
+
+.formGroup select {
+  width: 100%;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 5px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.formGroup select:focus {
+  border-color: #eff15a;
+}
+
+.button {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black; /* Texto negro */
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 12px 24px;
+  margin: 10px 5px; /* Espacio entre los botones */
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
 .button:hover {
   background-color: #eff15a;
 }
 
-.selectContainer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    background-color: rgba(253, 253, 253, 0.7);
-    border: none;
-    border-radius: 5px;
-    padding: 8px;
-    margin-bottom: 20px; /* Espacio entre los elementos */
-}
-.title{
-  font-family: Arial, sans-serif
+.title {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
