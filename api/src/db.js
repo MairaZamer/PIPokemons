@@ -2,15 +2,23 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
-const sequelize = new Sequelize(
-   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pokemon`,
-   {
-      logging: false, // set to console.log to see the raw SQL queries
-      native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-   }
-);
+
+const sequelize = new Sequelize({
+   database: process.env.DB_DATABASE,
+   username: process.env.DB_USERNAME,
+   password: process.env.DB_PASSWORD,
+   host: process.env.DB_HOST,
+   port: process.env.DB_PORT,
+   dialect: 'postgres',
+   dialectOptions: {
+     ssl: process.env.DB_SSL === 'true' ? {
+       require: true,
+       rejectUnauthorized: false // Ajusta esto según tu configuración de certificados SSL
+     } : false
+   },
+   logging: false // Opcional: desactivar el registro de consultas
+ });
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
