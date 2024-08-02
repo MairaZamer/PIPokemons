@@ -3,22 +3,22 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-
 const sequelize = new Sequelize({
-   database: process.env.DB_DATABASE,
-   username: process.env.DB_USERNAME,
-   password: process.env.DB_PASSWORD,
-   host: process.env.DB_HOST,
-   port: process.env.DB_PORT,
+   database: 'pokemon_qkjv',
+   username: 'pokemon_qkjv_user',
+   password: 'R2UfXGt0sUfSOQ0H32Ou8suabugmqm8c',
+   host: 'dpg-cqm136bv2p9s73dh3gp0-a.oregon-postgres.render.com', // Actualizado a la URL externa
+   port: 5432,
    dialect: 'postgres',
    dialectOptions: {
-     ssl: process.env.DB_SSL === 'true' ? {
-       require: true,
-       rejectUnauthorized: false // Ajusta esto según tu configuración de certificados SSL
-     } : false
+     ssl: {
+       require: true, // Habilita SSL ya que Render requiere SSL
+       rejectUnauthorized: false // Desactiva la validación del certificado (opcional)
+     }
    },
-   logging: false // Opcional: desactivar el registro de consultas
- });
+   logging: false
+});
+ 
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -37,6 +37,7 @@ fs.readdirSync(path.join(__dirname, '/models'))
 
 // Injectamos la conexion (sequelize) a todos los modelos
 modelDefiners.forEach((model) => model(sequelize));
+
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [
@@ -50,11 +51,10 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Pokemon, Type } = sequelize.models;
 
 // Aca vendrian las relaciones
-Pokemon.belongsToMany(Type, {through: "pokemon_type"});
-Type.belongsToMany(Pokemon, {through: "pokemon_type"});
-// Product.hasMany(Reviews);
+Pokemon.belongsToMany(Type, { through: "pokemon_type" });
+Type.belongsToMany(Pokemon, { through: "pokemon_type" });
 
 module.exports = {
    ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
-   conn: sequelize, // para importart la conexión { conn } = require('./db.js');
+   conn: sequelize, // para importar la conexión { conn } = require('./db.js');
 };
