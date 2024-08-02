@@ -4,21 +4,20 @@ const fs = require('fs');
 const path = require('path');
 
 const sequelize = new Sequelize({
-   database: 'pokemon_qkjv',
-   username: 'pokemon_qkjv_user',
-   password: 'R2UfXGt0sUfSOQ0H32Ou8suabugmqm8c',
-   host: 'dpg-cqm136bv2p9s73dh3gp0-a.oregon-postgres.render.com', // Actualizado a la URL externa
-   port: 5432,
+   database: process.env.DB_DATABASE,
+   username: process.env.DB_USERNAME,
+   password: process.env.DB_PASSWORD,
+   host: process.env.DB_HOST,
+   port: process.env.DB_PORT,
    dialect: 'postgres',
    dialectOptions: {
-     ssl: {
-       require: true, // Habilita SSL ya que Render requiere SSL
-       rejectUnauthorized: false // Desactiva la validación del certificado (opcional)
-     }
+     ssl: process.env.DB_SSL === 'true' ? {
+       require: true,
+       rejectUnauthorized: false // Ajusta esto según tu configuración de certificados SSL
+     } : false
    },
-   logging: false
-});
- 
+   logging: false // Opcional: desactivar el registro de consultas
+ });
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
